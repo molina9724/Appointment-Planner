@@ -85,7 +85,7 @@ exports.config = {
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
   baseUrl:
-    "https://ej2.syncfusion.com/showcase/angular/appointmentplanner/#/patients",
+    "https://ej2.syncfusion.com/showcase/angular/appointmentplanner/#/dashboard",
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
