@@ -1,7 +1,13 @@
+const DashboardPage = require("./../po/pages/dashboard.page");
+const DoctorsPage = require("./../po/pages/doctors.page");
+
+const dashboardPage = new DashboardPage();
+const doctorsPage = new DoctorsPage();
+
 describe("Doctors page", () => {
   beforeEach(async () => {
-    await browser.url("showcase/angular/appointmentplanner/#/dashboard");
-    await $("div[routerlink='/doctors']").click();
+    await dashboardPage.open();
+    await dashboardPage.sideMenu.item("doctors").click();
   });
 
   it("should get page title", async () => {
@@ -11,12 +17,12 @@ describe("Doctors page", () => {
   });
 
   it("should display Add New Doctor Button", async () => {
-    await $(".specialization-types button.e-control").click();
+    await doctorsPage.doctorLisHeader.addNewDoctorBtn.click();
     await expect($("ejs-dialog[cssclass='new-doctor-dialog']")).toBeDisplayed();
   });
 
   it("should fill in all New Doctor modal required fields", async () => {
-    await $(".specialization-types button.e-control").click();
+    await doctorsPage.doctorLisHeader.addNewDoctorBtn.click();
     await expect($(".new-doctor-dialog")).toBeDisplayed();
 
     const name = await $("[name='Name']");
@@ -46,7 +52,7 @@ describe("Doctors page", () => {
   });
 
   it("should close New Doctor modal", async () => {
-    await $(".specialization-types button.e-control").click();
+    await doctorsPage.doctorLisHeader.addNewDoctorBtn.click();
     await expect($(".new-doctor-dialog")).toBeDisplayed();
     await $(".e-dlg-closeicon-btn").click();
     await expect($(".new-doctor-dialog")).not.toBeDisplayed();
