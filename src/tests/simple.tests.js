@@ -34,7 +34,7 @@ describe("Doctors page", () => {
     const designation = await $("[name='Designation']");
     designation.setValue("Senior");
 
-    await $(".e-footer-content button.e-primary").click();
+    await $(".button-container button.e-primary").click();
     await expect($(".new-doctor-dialog")).not.toBeDisplayed();
 
     await expect($("#Specialist_8")).toBeDisplayed();
