@@ -14,7 +14,14 @@ class AddDoctorComponent extends BaseComponent {
   }
 
   item(param) {
-    const selectors = {};
+    const selectors = {
+      name: "[name='Name']",
+      number: "#DoctorMobile",
+      email: "[name='Email']",
+      education: "[name='Education']",
+      designation: "[name='Designation']",
+    };
+    return this.rootEl.$(selectors[param]);
   }
 }
 

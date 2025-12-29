@@ -21,20 +21,23 @@ describe("Doctors page", () => {
     await pages("doctors").doctorLisHeader.addNewDoctorBtn.click();
     await expect(pages("doctors").addDoctorModal.rootEl).toBeDisplayed();
 
-    const name = await $("[name='Name']");
-    await name.setValue("Gregory House");
+    await pages("doctors")
+      .addDoctorModal.item("name")
+      .setValue("Gregory House");
 
-    const mobileNumber = await $("#DoctorMobile");
-    await mobileNumber.setValue("808-592-9022");
+    await pages("doctors")
+      .addDoctorModal.item("number")
+      .setValue("808-592-9022");
 
-    const email = await $("[name='Email']");
-    email.setValue("info@gregoryhouse.org");
+    await pages("doctors")
+      .addDoctorModal.item("email")
+      .setValue("info@gregoryhouse.org");
 
-    const education = await $("[name='Education']");
-    education.setValue("MD");
+    await pages("doctors").addDoctorModal.item("education").setValue("MD");
 
-    const designation = await $("[name='Designation']");
-    designation.setValue("Senior");
+    await pages("doctors")
+      .addDoctorModal.item("designation")
+      .setValue("Senior");
 
     await pages("doctors").addDoctorModal.saveBtn.click();
     await expect(pages("doctors").addDoctorModal.rootEl).not.toBeDisplayed();
