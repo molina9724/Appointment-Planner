@@ -53,7 +53,7 @@ describe("Doctors page", () => {
   it("should close New Doctor modal", async () => {
     await pages("doctors").doctorLisHeader.addNewDoctorBtn.click();
     await expect(pages("doctors").addDoctorModal.rootEl).toBeDisplayed();
-    await $(".e-dlg-closeicon-btn").click();
+    await pages("doctors").addDoctorModal.closeBtn.click();
     await expect(pages("doctors").addDoctorModal.rootEl).not.toBeDisplayed();
   });
 });
