@@ -17,7 +17,7 @@ describe("Doctors page", () => {
     await expect(pages("doctors").addDoctorModal.rootEl).toBeDisplayed();
   });
 
-  it("should fill in all New Doctor modal required fields", async () => {
+  it.only("should fill in all New Doctor modal required fields", async () => {
     await pages("doctors").doctorLisHeader.addNewDoctorBtn.click();
     await expect(pages("doctors").addDoctorModal.rootEl).toBeDisplayed();
 
@@ -42,12 +42,20 @@ describe("Doctors page", () => {
     await pages("doctors").addDoctorModal.saveBtn.click();
     await expect(pages("doctors").addDoctorModal.rootEl).not.toBeDisplayed();
 
-    await expect($("#Specialist_8")).toBeDisplayed();
-    expect($("#Specialist_8").$(".name")).toHaveText("Dr. Gregory House");
-    expect($("#Specialist_8").$(".education")).toHaveText("MD", {
-      ignoreCase: true,
-    });
-    expect($("#Specialist_8").$(".designation")).toHaveText("Senior");
+    await expect(pages("doctors").specialistCard("8").rootEl).toBeDisplayed();
+
+    await expect(pages("doctors").specialistCard("8").name).toHaveText(
+      "Dr. Gregory House"
+    );
+
+    await expect(pages("doctors").specialistCard("8").education).toHaveText(
+      "MD",
+      { ignoreCase: true }
+    );
+
+    await expect(pages("doctors").specialistCard("8").designation).toHaveText(
+      "Senior"
+    );
   });
 
   it("should close New Doctor modal", async () => {
