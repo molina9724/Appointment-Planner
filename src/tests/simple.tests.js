@@ -22,21 +22,21 @@ describe("Doctors page", () => {
     await expect(pages("doctors").addDoctorModal.rootEl).toBeDisplayed();
 
     await pages("doctors")
-      .addDoctorModal.item("name")
+      .addDoctorModal.input("name")
       .setValue("Gregory House");
 
     await pages("doctors")
-      .addDoctorModal.item("number")
+      .addDoctorModal.input("number")
       .setValue("808-592-9022");
 
     await pages("doctors")
-      .addDoctorModal.item("email")
+      .addDoctorModal.input("email")
       .setValue("info@gregoryhouse.org");
 
-    await pages("doctors").addDoctorModal.item("education").setValue("MD");
+    await pages("doctors").addDoctorModal.input("education").setValue("MD");
 
     await pages("doctors")
-      .addDoctorModal.item("designation")
+      .addDoctorModal.input("designation")
       .setValue("Senior");
 
     await pages("doctors").addDoctorModal.saveBtn.click();

@@ -13,7 +13,7 @@ class AddDoctorComponent extends BaseComponent {
     return this.rootEl.$(".button-container button.e-primary");
   }
 
-  item(param) {
+  input(param) {
     const selectors = {
       name: "[name='Name']",
       number: "#DoctorMobile",
