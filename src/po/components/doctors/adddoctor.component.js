@@ -1,8 +1,8 @@
-class AddDoctorComponent {
-  constructor(parameters) {}
+const BaseComponent = require("../common/base.component");
 
-  get rootEl() {
-    return $(".new-doctor-dialog");
+class AddDoctorComponent extends BaseComponent {
+  constructor(rootSelector) {
+    super(".new-doctor-dialog");
   }
 
   get closeBtn() {
@@ -11,6 +11,10 @@ class AddDoctorComponent {
 
   get saveBtn() {
     return this.rootEl.$(".button-container button.e-primary");
+  }
+
+  item(param) {
+    const selectors = {};
   }
 }
 
