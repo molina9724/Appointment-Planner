@@ -1,13 +1,9 @@
-const DashboardPage = require("./../po/pages/dashboard.page");
-const DoctorsPage = require("./../po/pages/doctors.page");
-
-const dashboardPage = new DashboardPage();
-const doctorsPage = new DoctorsPage();
+const { pages } = require("./../po");
 
 describe("Doctors page", () => {
   beforeEach(async () => {
-    await dashboardPage.open();
-    await dashboardPage.sideMenu.item("doctors").click();
+    await pages("dashboard").open();
+    await pages("dashboard").sideMenu.item("doctors").click();
   });
 
   it("should get page title", async () => {
@@ -17,13 +13,13 @@ describe("Doctors page", () => {
   });
 
   it("should display Add New Doctor Button", async () => {
-    await doctorsPage.doctorLisHeader.addNewDoctorBtn.click();
-    await expect(doctorsPage.addDoctorModal.rootEl).toBeDisplayed();
+    await pages("doctors").doctorLisHeader.addNewDoctorBtn.click();
+    await expect(pages("doctors").addDoctorModal.rootEl).toBeDisplayed();
   });
 
   it("should fill in all New Doctor modal required fields", async () => {
-    await doctorsPage.doctorLisHeader.addNewDoctorBtn.click();
-    await expect(doctorsPage.addDoctorModal.rootEl).toBeDisplayed();
+    await pages("doctors").doctorLisHeader.addNewDoctorBtn.click();
+    await expect(pages("doctors").addDoctorModal.rootEl).toBeDisplayed();
 
     const name = await $("[name='Name']");
     await name.setValue("Gregory House");
@@ -40,8 +36,8 @@ describe("Doctors page", () => {
     const designation = await $("[name='Designation']");
     designation.setValue("Senior");
 
-    await doctorsPage.addDoctorModal.saveBtn.click();
-    await expect(doctorsPage.addDoctorModal.rootEl).not.toBeDisplayed();
+    await pages("doctors").addDoctorModal.saveBtn.click();
+    await expect(pages("doctors").addDoctorModal.rootEl).not.toBeDisplayed();
 
     await expect($("#Specialist_8")).toBeDisplayed();
     expect($("#Specialist_8").$(".name")).toHaveText("Dr. Gregory House");
@@ -52,9 +48,9 @@ describe("Doctors page", () => {
   });
 
   it("should close New Doctor modal", async () => {
-    await doctorsPage.doctorLisHeader.addNewDoctorBtn.click();
-    await expect(doctorsPage.addDoctorModal.rootEl).toBeDisplayed();
+    await pages("doctors").doctorLisHeader.addNewDoctorBtn.click();
+    await expect(pages("doctors").addDoctorModal.rootEl).toBeDisplayed();
     await $(".e-dlg-closeicon-btn").click();
-    await expect(doctorsPage.addDoctorModal.rootEl).not.toBeDisplayed();
+    await expect(pages("doctors").addDoctorModal.rootEl).not.toBeDisplayed();
   });
 });

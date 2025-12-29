@@ -1,5 +1,4 @@
-const Header = require("../components/common/header.component");
-const SideMenu = require("../components/common/sidemenu.component");
+const { Header, SideMenu } = require("../components");
 
 class BasePage {
   constructor(url) {
