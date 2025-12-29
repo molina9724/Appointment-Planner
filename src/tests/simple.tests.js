@@ -18,12 +18,12 @@ describe("Doctors page", () => {
 
   it("should display Add New Doctor Button", async () => {
     await doctorsPage.doctorLisHeader.addNewDoctorBtn.click();
-    await expect($("ejs-dialog[cssclass='new-doctor-dialog']")).toBeDisplayed();
+    await expect(doctorsPage.addDoctorModal.rootEl).toBeDisplayed();
   });
 
   it("should fill in all New Doctor modal required fields", async () => {
     await doctorsPage.doctorLisHeader.addNewDoctorBtn.click();
-    await expect($(".new-doctor-dialog")).toBeDisplayed();
+    await expect(doctorsPage.addDoctorModal.rootEl).toBeDisplayed();
 
     const name = await $("[name='Name']");
     await name.setValue("Gregory House");
@@ -40,8 +40,8 @@ describe("Doctors page", () => {
     const designation = await $("[name='Designation']");
     designation.setValue("Senior");
 
-    await $(".button-container button.e-primary").click();
-    await expect($(".new-doctor-dialog")).not.toBeDisplayed();
+    await doctorsPage.addDoctorModal.saveBtn.click();
+    await expect(doctorsPage.addDoctorModal.rootEl).not.toBeDisplayed();
 
     await expect($("#Specialist_8")).toBeDisplayed();
     expect($("#Specialist_8").$(".name")).toHaveText("Dr. Gregory House");
@@ -53,8 +53,8 @@ describe("Doctors page", () => {
 
   it("should close New Doctor modal", async () => {
     await doctorsPage.doctorLisHeader.addNewDoctorBtn.click();
-    await expect($(".new-doctor-dialog")).toBeDisplayed();
+    await expect(doctorsPage.addDoctorModal.rootEl).toBeDisplayed();
     await $(".e-dlg-closeicon-btn").click();
-    await expect($(".new-doctor-dialog")).not.toBeDisplayed();
+    await expect(doctorsPage.addDoctorModal.rootEl).not.toBeDisplayed();
   });
 });
