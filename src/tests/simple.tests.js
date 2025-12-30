@@ -17,7 +17,7 @@ describe("Doctors page", () => {
     await expect(pages("doctors").addDoctorModal.rootEl).toBeDisplayed();
   });
 
-  it.only("should fill in all New Doctor modal required fields", async () => {
+  it("should fill in all New Doctor modal required fields", async () => {
     await pages("doctors").doctorLisHeader.addNewDoctorBtn.click();
     await expect(pages("doctors").addDoctorModal.rootEl).toBeDisplayed();
 

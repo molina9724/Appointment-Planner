@@ -7,7 +7,7 @@ const BasePage = require("./base.page");
 
 class DoctorsPage extends BasePage {
   constructor(url) {
-    super("showcase/angular/appointmentplanner/#/doctors");
+    super("/showcase/angular/appointmentplanner/#/doctors");
     this.doctorLisHeader = new DoctorListHeader();
     this.addDoctorModal = new AddDoctorModal();
   }

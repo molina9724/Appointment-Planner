@@ -20,7 +20,7 @@ exports.config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./../tests/**/patients.test.js"],
+  specs: ["./../tests/**/**.tests.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -84,7 +84,7 @@ exports.config = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: "https://ej2.syncfusion.com/",
+  baseUrl: "https://ej2.syncfusion.com",
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
