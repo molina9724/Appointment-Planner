@@ -19,15 +19,16 @@ describe("Patients test suite", () => {
   });
 
   it("Should open Add Patient modal when clicking the button", async () => {
-    await $(".patient-operations .e-btn").click();
-    await expect($(".e-dlg-container .new-patient-dialog")).toBeDisplayed();
+    await pages("patients").listHeaderComponent.addNewPatientBtn.click();
+    // expect($(".e-dlg-container .new-patient-dialog")).toBeDisplayed();
+    expect(pages("patients").addPatientComponent.rootEl).toBeDisplayed();
   });
 
   it("Should close the modal when clicking cancel/close", async () => {
-    await $(".patient-operations .e-btn").click();
-    await expect($(".e-dlg-container .new-patient-dialog")).toBeDisplayed();
-    await $(".e-dlg-closeicon-btn").click();
-    await expect($(".e-dlg-container .new-patient-dialog")).not.toBeDisplayed();
+    await pages("patients").listHeaderComponent.addNewPatientBtn.click();
+    expect(pages("patients").addPatientComponent.rootEl).toBeDisplayed();
+    await pages("patients").addPatientComponent.closeBtn.click();
+    expect(pages("patients").addPatientComponent.rootEl).not.toBeDisplayed();
   });
 
   it("Should add a new patient and verify it appears in the grid", async () => {
