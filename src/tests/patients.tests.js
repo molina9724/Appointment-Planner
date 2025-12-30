@@ -13,7 +13,9 @@ describe("Patients test suite", () => {
   });
 
   it("Should display the Add New Patient button", async () => {
-    await expect($(".patient-operations .e-btn")).toBeDisplayed();
+    await expect(
+      pages("patients").listHeaderComponent.addNewPatientBtn
+    ).toBeDisplayed();
   });
 
   it("Should open Add Patient modal when clicking the button", async () => {
