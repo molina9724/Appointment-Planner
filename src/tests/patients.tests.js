@@ -1,6 +1,8 @@
+const { pages } = require("../po");
+
 describe("Patients test suite", () => {
   beforeEach(async () => {
-    await browser.url("/showcase/angular/appointmentplanner/#/patients");
+    pages("patients").open();
     await browser.refresh();
   });
 
