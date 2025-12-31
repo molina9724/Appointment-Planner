@@ -20,7 +20,6 @@ describe("Patients test suite", () => {
 
   it("Should open Add Patient modal when clicking the button", async () => {
     await pages("patients").listHeaderComponent.addNewPatientBtn.click();
-    // expect($(".e-dlg-container .new-patient-dialog")).toBeDisplayed();
     expect(pages("patients").addPatientComponent.rootEl).toBeDisplayed();
   });
 
@@ -31,20 +30,36 @@ describe("Patients test suite", () => {
     expect(pages("patients").addPatientComponent.rootEl).not.toBeDisplayed();
   });
 
-  it("Should add a new patient and verify it appears in the grid", async () => {
-    await $(".patient-operations .e-btn").click();
-    await expect($(".e-dlg-container .new-patient-dialog")).toBeDisplayed();
+  it.only("Should add a new patient and verify it appears in the grid", async () => {
+    await pages("patients").listHeaderComponent.addNewPatientBtn.click();
+    expect(pages("patients").addPatientComponent.rootEl).toBeDisplayed();
 
-    await $("[name='Name']").setValue("Carl Jhonson");
-    await $("label[for='doctorCheckMale']").click();
-    await $("[name='DOB']").setValue("8/11/1968");
+    await pages("patients")
+      .addPatientComponent.input("name")
+      .setValue("Carl Jhonson");
+
+    await pages("patients").addPatientComponent.input("male").click();
+
+    await pages("patients")
+      .addPatientComponent.input("dateOfBirth")
+      .setValue("8/11/1968");
+
     //await $("#BloodGroup [role='combobox']");
-    await $("#PatientMobile").setValue("1111111111");
-    await $("[name='Email']").setValue("CJ@gta.com");
-    await $("[name='Symptoms']").setValue("Fever");
 
-    await $(".button-container .e-primary").click();
-    await expect($(".e-dlg-container .new-patient-dialog")).not.toBeDisplayed();
+    await pages("patients")
+      .addPatientComponent.input("mobileNumber")
+      .setValue("1111111111");
+
+    await pages("patients")
+      .addPatientComponent.input("email")
+      .setValue("CJ@gta.com");
+
+    await pages("patients")
+      .addPatientComponent.input("symptoms")
+      .setValue("Fever");
+    await pages("patients").addPatientComponent.saveBtn.click();
+
+    expect(pages("patients").addPatientComponent.rootEl).not.toBeDisplayed();
 
     const newPatient = await $$("tr[aria-rowindex='8'] .e-rowcell");
     await expect(newPatient[0]).toHaveText("8");

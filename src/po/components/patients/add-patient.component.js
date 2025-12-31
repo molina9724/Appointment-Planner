@@ -24,7 +24,7 @@ class AddPatientComponent extends BaseComponent {
       email: "[name='Email']",
       symptoms: "[name='Symptoms']",
     };
-    return this.rootEl.$(selectors[param].toLowerCase());
+    return this.rootEl.$(selectors[param]);
   }
 }
 
