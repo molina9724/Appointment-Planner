@@ -8,6 +8,7 @@ const SpecialistCard = require("./doctors/specialist-card.component");
 
 const PatientListHeader = require("./patients/list-header.component");
 const AddPatientComponent = require("./patients/add-patient.component");
+const PatientListComponent = require("./patients/patient-list.component");
 
 module.exports = {
   Header,
@@ -17,4 +18,5 @@ module.exports = {
   SpecialistCard,
   PatientListHeader,
   AddPatientComponent,
+  PatientListComponent,
 };

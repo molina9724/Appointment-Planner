@@ -30,7 +30,7 @@ describe("Patients test suite", () => {
     expect(pages("patients").addPatientComponent.rootEl).not.toBeDisplayed();
   });
 
-  it.only("Should add a new patient and verify it appears in the grid", async () => {
+  it("Should add a new patient and verify it appears in the grid", async () => {
     await pages("patients").listHeaderComponent.addNewPatientBtn.click();
     expect(pages("patients").addPatientComponent.rootEl).toBeDisplayed();
 
