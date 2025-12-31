@@ -17,10 +17,6 @@ class PatientListComponent extends BaseComponent {
     return this.rootEl.$("td:nth-child(3)");
   }
 
-  get gender() {
-    return this.rootEl.$("td:nth-child(3)");
-  }
-
   get bloodGroup() {
     return this.rootEl.$("td:nth-child(4)");
   }
