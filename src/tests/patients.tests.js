@@ -30,7 +30,7 @@ describe("Patients test suite", () => {
     expect(pages("patients").addPatientComponent.rootEl).not.toBeDisplayed();
   });
 
-  it("Should add a new patient and verify it appears in the grid", async () => {
+  it.only("Should add a new patient and verify it appears in the grid", async () => {
     await pages("patients").listHeaderComponent.addNewPatientBtn.click();
     expect(pages("patients").addPatientComponent.rootEl).toBeDisplayed();
 
@@ -61,13 +61,32 @@ describe("Patients test suite", () => {
 
     expect(pages("patients").addPatientComponent.rootEl).not.toBeDisplayed();
 
-    const newPatient = await $$("tr[aria-rowindex='8'] .e-rowcell");
-    await expect(newPatient[0]).toHaveText("8");
-    await expect(newPatient[1]).toHaveText("Carl Jhonson");
-    await expect(newPatient[2]).toHaveText("Male");
-    await expect(newPatient[3]).toHaveText("AB+");
-    await expect(newPatient[4]).toHaveText("Fever");
-    await expect(newPatient[5]).toHaveText("(111) 111-1111");
-    await expect(newPatient[6]).toHaveText("CJ@gta.com");
+    await expect(pages("patients").patientListComponent("8").id).toHaveText(
+      "8"
+    );
+
+    await expect(pages("patients").patientListComponent("8").name).toHaveText(
+      "Carl Jhonson"
+    );
+
+    await expect(pages("patients").patientListComponent("8").gender).toHaveText(
+      "Male"
+    );
+
+    await expect(
+      pages("patients").patientListComponent("8").bloodGroup
+    ).toHaveText("AB+");
+
+    await expect(
+      pages("patients").patientListComponent("8").symptoms
+    ).toHaveText("Fever");
+
+    await expect(
+      pages("patients").patientListComponent("8").mobileNumber
+    ).toHaveText("(111) 111-1111");
+
+    await expect(pages("patients").patientListComponent("8").email).toHaveText(
+      "CJ@gta.com"
+    );
   });
 });

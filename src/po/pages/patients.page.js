@@ -9,7 +9,9 @@ class PatientsPage extends BasePage {
     super("/showcase/angular/appointmentplanner/#/patients");
     this.listHeaderComponent = new ListHeaderComponent();
     this.addPatientComponent = new AddPatientComponent();
-    this.patientListComponent = new PatientListComponent();
+  }
+  patientListComponent(id) {
+    return new PatientListComponent(id);
   }
 }
 
