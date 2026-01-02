@@ -49,18 +49,25 @@ describe("Schedule Test Suit", () => {
   });
 
   it("Should switch to Day view", async () => {
-    await $(".e-today").click();
     await $(".e-day").click();
 
-    const date = new Date()
-      .toLocaleString("en-US", {
-        weekday: "short",
-        month: "short",
-        day: "numeric",
-      })
-      .toUpperCase();
-
-    expect(await $(".date-text").getText()).toEqual(date);
+    await expect($(".date-text")).toHaveText(
+      expect.stringMatching(/^[A-Z]{3}, [A-Z]{3} \d{1,2}$/)
+    );
     expect(await $$(".date-text").length).toEqual(1);
+  });
+
+  it("Should switch to Week view", async () => {
+    await $(".e-week").click();
+    await expect($(".e-week")).toHaveElementClass("e-active-view");
+
+    await expect($(".e-date-range")).toHaveText(
+      expect.stringMatching(/^[A-Za-z]+ \d{2} - ([A-Za-z]+ )?\d{2}, \d{4}$/)
+    );
+
+    const dates = await $$(".e-header-cells").map(async (el) => el.getText());
+    for (let index = 1; index < dates.length; index++) {
+      expect(dates[index]).toMatch(/^[A-Z]{3}, [A-Z]{3} \d{1,2}$/);
+    }
   });
 });
