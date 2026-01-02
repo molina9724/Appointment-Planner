@@ -48,7 +48,7 @@ describe("Schedule Test Suit", () => {
     expect(currentDateAfterClick).toEqual(date);
   });
 
-  it.only("Should switch to Day view", async () => {
+  it("Should switch to Day view", async () => {
     await $(".e-today").click();
     await $(".e-day").click();
 
