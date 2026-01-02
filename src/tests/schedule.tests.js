@@ -1,7 +1,7 @@
 describe("Schedule Test Suit", () => {
   beforeEach(async () => {
     await browser.url("/showcase/angular/appointmentplanner/#/calendar");
-    //await browser.refresh();
+    await browser.refresh();
   });
 
   it("Should display the Schedule page", async () => {
@@ -21,8 +21,46 @@ describe("Schedule Test Suit", () => {
 
   it("Should navigate forward when clicking next arrow", async () => {
     const currentDate = await $(".e-date-range").getText();
-    await $("#e-tbr-btn_50").click();
+    await $("[title='Next']").click();
     const currentDateAfterClick = await $(".e-date-range").getText();
-    expect(currentDate).toEqual(currentDateAfterClick);
+    expect(currentDate).not.toEqual(currentDateAfterClick);
+  });
+
+  it("Should navigate backward when clicking prev arrow", async () => {
+    const currentDate = await $(".e-date-range").getText();
+    await $("[title='Previous']").click();
+    const currentDateAfterClick = await $(".e-date-range").getText();
+    expect(currentDate).not.toEqual(currentDateAfterClick);
+  });
+
+  it("Should return to today when clicking Today button", async () => {
+    await $(".e-today").click();
+    await $(".e-day").click();
+
+    const currentDateAfterClick = await $(".e-date-range").getText();
+
+    const date = new Date().toLocaleString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+
+    expect(currentDateAfterClick).toEqual(date);
+  });
+
+  it.only("Should switch to Day view", async () => {
+    await $(".e-today").click();
+    await $(".e-day").click();
+
+    const date = new Date()
+      .toLocaleString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+      })
+      .toUpperCase();
+
+    expect(await $(".date-text").getText()).toEqual(date);
+    expect(await $$(".date-text").length).toEqual(1);
   });
 });
