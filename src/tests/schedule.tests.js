@@ -74,7 +74,7 @@ describe("Schedule Test Suit", () => {
     }
   });
 
-  it.only("Should switch to Month view", async () => {
+  it("Should switch to Month view", async () => {
     await $(".e-month").click();
     await expect($(".e-month")).toHaveElementClass("e-active-view");
 
@@ -94,8 +94,13 @@ describe("Schedule Test Suit", () => {
     const dates = await $$(".e-header-cells").map(async (el) => el.getText());
     dates.forEach((el) => expect(days).toContain(el));
 
-    //const tableDays = await $$(".e-navigate").getText();
-    expect(tableDays.length).toEqual("35");
-    await expect($("#_table tbody tr")).length.toEqual(5);
+    const tableDays = await $$(".e-navigate").map(async (el) => el.getText());
+    tableDays.pop();
+    expect(tableDays.length).toEqual(42);
+    expect(await $$(".e-content-wrap tbody tr").length).toEqual(6);
+
+    for (let index = 0; index < tableDays.length; index++) {
+      expect(tableDays[index]).toMatch(/^([A-Z][a-z]{2} )?\d{1,2}$/);
+    }
   });
 });
