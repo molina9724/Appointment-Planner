@@ -51,6 +51,9 @@ describe("Schedule Test Suit", () => {
   it("Should switch to Day view", async () => {
     await $(".e-day").click();
 
+    await expect($(".e-date-range")).toHaveText(
+      expect.stringMatching(/^[A-Z][a-z]+ \d{1,2}, \d{4}$/)
+    );
     await expect($(".date-text")).toHaveText(
       expect.stringMatching(/^[A-Z]{3}, [A-Z]{3} \d{1,2}$/)
     );
@@ -69,5 +72,30 @@ describe("Schedule Test Suit", () => {
     for (let index = 1; index < dates.length; index++) {
       expect(dates[index]).toMatch(/^[A-Z]{3}, [A-Z]{3} \d{1,2}$/);
     }
+  });
+
+  it.only("Should switch to Month view", async () => {
+    await $(".e-month").click();
+    await expect($(".e-month")).toHaveElementClass("e-active-view");
+
+    await expect($(".e-date-range")).toHaveText(
+      expect.stringMatching(/^[A-Z][a-z]+ \d{4}$/)
+    );
+
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const dates = await $$(".e-header-cells").map(async (el) => el.getText());
+    dates.forEach((el) => expect(days).toContain(el));
+
+    //const tableDays = await $$(".e-navigate").getText();
+    expect(tableDays.length).toEqual("35");
+    await expect($("#_table tbody tr")).length.toEqual(5);
   });
 });
