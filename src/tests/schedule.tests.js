@@ -103,4 +103,24 @@ describe("Schedule Test Suit", () => {
       expect(tableDays[index]).toMatch(/^([A-Z][a-z]{2} )?\d{1,2}$/);
     }
   });
+
+  it("Should open appointment dialog when clicking a time slot", async () => {
+    await $(".e-week").click();
+    await expect($(".e-week")).toHaveElementClass("e-active-view");
+
+    let cellHours;
+    const workHours = await $$(".e-work-hours");
+    for (let index = 0; index < workHours.length; index++) {
+      await workHours[index].click();
+      if (!(await $(".e-quick-popup-wrapper").isDisplayed())) {
+        cellHours = workHours[index];
+        break;
+      }
+    }
+    if (!cellHours) {
+      throw new Error("No available time slot found");
+    }
+    await cellHours.doubleClick();
+    await expect($(".e-popup-open")).toBeDisplayed();
+  });
 });
