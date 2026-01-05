@@ -123,4 +123,30 @@ describe("Schedule Test Suit", () => {
     await cellHours.doubleClick();
     await expect($(".e-popup-open")).toBeDisplayed();
   });
+
+  it("Should close dialog when clicking cancel", async () => {
+    await $(".e-week").click();
+    await expect($(".e-week")).toHaveElementClass("e-active-view");
+
+    let cellHours;
+    const workHours = await $$(".e-work-hours");
+    for (let index = 0; index < workHours.length; index++) {
+      await workHours[index].click();
+      if (!(await $(".e-quick-popup-wrapper").isDisplayed())) {
+        cellHours = workHours[index];
+        break;
+      }
+    }
+    if (!cellHours) {
+      throw new Error("No available time slot found");
+    }
+    await cellHours.doubleClick();
+    await expect($(".e-popup-open")).toBeDisplayed();
+    await $(".e-footer-content .e-event-cancel").waitForClickable();
+    await browser.execute(() => {
+      document.querySelector(".e-footer-content .e-event-cancel").click();
+    });
+    await $(".e-popup-open").waitForDisplayed({ reverse: true });
+    await expect($(".e-popup-open")).not.toBeDisplayed();
+  });
 });
