@@ -4,6 +4,10 @@ class AppointmentTableComponent extends BaseComponent {
   constructor() {
     super(".schedule-container");
   }
+
+  get dayBtn() {
+    return this.rootEl.$(".e-day");
+  }
 }
 
 module.exports = AppointmentTableComponent;

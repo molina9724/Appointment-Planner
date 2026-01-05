@@ -18,7 +18,9 @@ describe("Schedule Test Suit", () => {
   });
 
   it("Should display the Today button in toolbar", async () => {
-    await expect($("[id='e-tbr-btn_53']")).toBeDisplayed();
+    await expect(
+      pages("schedule").appointmentTableComponent.dayBtn
+    ).toBeDisplayed();
   });
 
   it("Should navigate forward when clicking next arrow", async () => {
