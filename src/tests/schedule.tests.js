@@ -24,24 +24,34 @@ describe("Schedule Test Suit", () => {
   });
 
   it("Should navigate forward when clicking next arrow", async () => {
-    const currentDate = await $(".e-date-range").getText();
-    await $("[title='Next']").click();
-    const currentDateAfterClick = await $(".e-date-range").getText();
+    const currentDate = await pages(
+      "schedule"
+    ).appointmentTableComponent.weekCurrentDate.getText();
+    await pages("schedule").appointmentTableComponent.nextBtn.click();
+    const currentDateAfterClick = await pages(
+      "schedule"
+    ).appointmentTableComponent.weekCurrentDate.getText();
     expect(currentDate).not.toEqual(currentDateAfterClick);
   });
 
   it("Should navigate backward when clicking prev arrow", async () => {
-    const currentDate = await $(".e-date-range").getText();
-    await $("[title='Previous']").click();
-    const currentDateAfterClick = await $(".e-date-range").getText();
+    const currentDate = await pages(
+      "schedule"
+    ).appointmentTableComponent.weekCurrentDate.getText();
+    await pages("schedule").appointmentTableComponent.previousBtn.click();
+    const currentDateAfterClick = await pages(
+      "schedule"
+    ).appointmentTableComponent.weekCurrentDate.getText();
     expect(currentDate).not.toEqual(currentDateAfterClick);
   });
 
   it("Should return to today when clicking Today button", async () => {
-    await $(".e-today").click();
-    await $(".e-day").click();
+    await pages("schedule").appointmentTableComponent.todayBtn.click();
+    await pages("schedule").appointmentTableComponent.dayBtn.click();
 
-    const currentDateAfterClick = await $(".e-date-range").getText();
+    const currentDateAfterClick = await pages(
+      "schedule"
+    ).appointmentTableComponent.weekCurrentDate.getText();
 
     const date = new Date().toLocaleString("en-US", {
       month: "long",
@@ -53,15 +63,19 @@ describe("Schedule Test Suit", () => {
   });
 
   it("Should switch to Day view", async () => {
-    await $(".e-day").click();
+    await pages("schedule").appointmentTableComponent.dayBtn.click();
 
-    await expect($(".e-date-range")).toHaveText(
-      expect.stringMatching(/^[A-Z][a-z]+ \d{1,2}, \d{4}$/)
-    );
-    await expect($(".date-text")).toHaveText(
-      expect.stringMatching(/^[A-Z]{3}, [A-Z]{3} \d{1,2}$/)
-    );
-    expect(await $$(".date-text").length).toEqual(1);
+    await expect(
+      pages("schedule").appointmentTableComponent.weekCurrentDate
+    ).toHaveText(expect.stringMatching(/^[A-Z][a-z]+ \d{1,2}, \d{4}$/));
+    await expect(
+      (
+        await pages("schedule").appointmentTableComponent.dateText
+      )[0]
+    ).toHaveText(expect.stringMatching(/^[A-Z]{3}, [A-Z]{3} \d{1,2}$/));
+    expect(
+      (await pages("schedule").appointmentTableComponent.dateText).length
+    ).toEqual(1);
   });
 
   it("Should switch to Week view", async () => {
