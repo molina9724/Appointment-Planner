@@ -10,6 +10,8 @@ const PatientListHeader = require("./patients/list-header.component");
 const AddPatientComponent = require("./patients/add-patient.component");
 const PatientListComponent = require("./patients/patient-list.component");
 
+const AppointmentTableComponent = require("./schedule/appointment-table.component");
+
 module.exports = {
   Header,
   SideMenu,
@@ -19,4 +21,5 @@ module.exports = {
   PatientListHeader,
   AddPatientComponent,
   PatientListComponent,
+  AppointmentTableComponent,
 };

@@ -1,6 +1,8 @@
+const { pages } = require("../po");
+
 describe("Schedule Test Suit", () => {
   beforeEach(async () => {
-    await browser.url("/showcase/angular/appointmentplanner/#/calendar");
+    pages("schedule").open();
     await browser.refresh();
   });
 
@@ -149,4 +151,6 @@ describe("Schedule Test Suit", () => {
     await $(".e-popup-open").waitForDisplayed({ reverse: true });
     await expect($(".e-popup-open")).not.toBeDisplayed();
   });
+
+  it("Should create a new appointment with all required fields", async () => {});
 });
