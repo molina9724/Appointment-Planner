@@ -84,7 +84,9 @@ describe("Schedule Test Suit", () => {
       pages("schedule").appointmentTableComponent.weekBtn
     ).toHaveElementClass("e-active-view");
 
-    await expect($(".e-date-range")).toHaveText(
+    await expect(
+      pages("schedule").appointmentTableComponent.weekCurrentDate
+    ).toHaveText(
       expect.stringMatching(/^[A-Za-z]+ \d{2} - ([A-Za-z]+ )?\d{2}, \d{4}$/)
     );
 
@@ -102,9 +104,9 @@ describe("Schedule Test Suit", () => {
       pages("schedule").appointmentTableComponent.monthBtn
     ).toHaveElementClass("e-active-view");
 
-    await expect($(".e-date-range")).toHaveText(
-      expect.stringMatching(/^[A-Z][a-z]+ \d{4}$/)
-    );
+    await expect(
+      pages("schedule").appointmentTableComponent.weekCurrentDate
+    ).toHaveText(expect.stringMatching(/^[A-Z][a-z]+ \d{4}$/));
 
     const days = [
       "Sunday",
