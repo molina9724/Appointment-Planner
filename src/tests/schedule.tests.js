@@ -79,7 +79,7 @@ describe("Schedule Test Suit", () => {
   });
 
   it("Should switch to Week view", async () => {
-    await $(".e-week").click();
+    await pages("schedule").appointmentTableComponent.weekBtn.click();
     await expect($(".e-week")).toHaveElementClass("e-active-view");
 
     await expect($(".e-date-range")).toHaveText(
@@ -123,7 +123,7 @@ describe("Schedule Test Suit", () => {
   });
 
   it("Should open appointment dialog when clicking a time slot", async () => {
-    await $(".e-week").click();
+    await pages("schedule").appointmentTableComponent.weekBtn.click();
     await expect($(".e-week")).toHaveElementClass("e-active-view");
 
     let cellHours;
@@ -143,7 +143,7 @@ describe("Schedule Test Suit", () => {
   });
 
   it("Should close dialog when clicking cancel", async () => {
-    await $(".e-week").click();
+    await pages("schedule").appointmentTableComponent.weekBtn.click();
     await expect($(".e-week")).toHaveElementClass("e-active-view");
 
     let cellHours;

@@ -29,6 +29,10 @@ class AppointmentTableComponent extends BaseComponent {
     return this.rootEl.$(".e-day");
   }
 
+  get weekBtn() {
+    return this.rootEl.$(".e-week");
+  }
+
   get dateText() {
     return this.rootEl.$$(".date-text");
   }
