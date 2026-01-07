@@ -80,7 +80,9 @@ describe("Schedule Test Suit", () => {
 
   it("Should switch to Week view", async () => {
     await pages("schedule").appointmentTableComponent.weekBtn.click();
-    await expect($(".e-week")).toHaveElementClass("e-active-view");
+    await expect(
+      pages("schedule").appointmentTableComponent.weekBtn
+    ).toHaveElementClass("e-active-view");
 
     await expect($(".e-date-range")).toHaveText(
       expect.stringMatching(/^[A-Za-z]+ \d{2} - ([A-Za-z]+ )?\d{2}, \d{4}$/)
@@ -124,7 +126,9 @@ describe("Schedule Test Suit", () => {
 
   it("Should open appointment dialog when clicking a time slot", async () => {
     await pages("schedule").appointmentTableComponent.weekBtn.click();
-    await expect($(".e-week")).toHaveElementClass("e-active-view");
+    await expect(
+      pages("schedule").appointmentTableComponent.weekBtn
+    ).toHaveElementClass("e-active-view");
 
     let cellHours;
     const workHours = await $$(".e-work-hours");
@@ -144,7 +148,9 @@ describe("Schedule Test Suit", () => {
 
   it("Should close dialog when clicking cancel", async () => {
     await pages("schedule").appointmentTableComponent.weekBtn.click();
-    await expect($(".e-week")).toHaveElementClass("e-active-view");
+    await expect(
+      pages("schedule").appointmentTableComponent.weekBtn
+    ).toHaveElementClass("e-active-view");
 
     let cellHours;
     const workHours = await $$(".e-work-hours");
