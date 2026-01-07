@@ -88,7 +88,9 @@ describe("Schedule Test Suit", () => {
       expect.stringMatching(/^[A-Za-z]+ \d{2} - ([A-Za-z]+ )?\d{2}, \d{4}$/)
     );
 
-    const dates = await $$(".e-header-cells").map(async (el) => el.getText());
+    const dates = await pages("schedule").appointmentTableComponent.cells.map(
+      async (el) => el.getText()
+    );
     for (let index = 1; index < dates.length; index++) {
       expect(dates[index]).toMatch(/^[A-Z]{3}, [A-Z]{3} \d{1,2}$/);
     }
@@ -111,7 +113,9 @@ describe("Schedule Test Suit", () => {
       "Friday",
       "Saturday",
     ];
-    const dates = await $$(".e-header-cells").map(async (el) => el.getText());
+    const dates = await pages("schedule").appointmentTableComponent.cells.map(
+      async (el) => el.getText()
+    );
     dates.forEach((el) => expect(days).toContain(el));
 
     const tableDays = await $$(".e-navigate").map(async (el) => el.getText());

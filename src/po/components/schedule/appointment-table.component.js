@@ -36,6 +36,10 @@ class AppointmentTableComponent extends BaseComponent {
   get dateText() {
     return this.rootEl.$$(".date-text");
   }
+
+  get cells() {
+    return this.rootEl.$$(".e-header-cells");
+  }
 }
 
 module.exports = AppointmentTableComponent;
