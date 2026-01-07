@@ -97,8 +97,10 @@ describe("Schedule Test Suit", () => {
   });
 
   it("Should switch to Month view", async () => {
-    await $(".e-month").click();
-    await expect($(".e-month")).toHaveElementClass("e-active-view");
+    await pages("schedule").appointmentTableComponent.monthBtn.click();
+    await expect(
+      pages("schedule").appointmentTableComponent.monthBtn
+    ).toHaveElementClass("e-active-view");
 
     await expect($(".e-date-range")).toHaveText(
       expect.stringMatching(/^[A-Z][a-z]+ \d{4}$/)
