@@ -44,6 +44,16 @@ class AppointmentTableComponent extends BaseComponent {
   get cells() {
     return this.rootEl.$$(".e-header-cells");
   }
+
+  async selectView(param) {
+    const input = {
+      day: this.dayBtn,
+      week: this.weekBtn,
+      month: this.monthBtn,
+    };
+    await input[param].click();
+    await expect(input[param]).toHaveElementClass("e-active-view");
+  }
 }
 
 module.exports = AppointmentTableComponent;

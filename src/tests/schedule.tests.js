@@ -63,7 +63,7 @@ describe("Schedule Test Suit", () => {
   });
 
   it("Should switch to Day view", async () => {
-    await pages("schedule").appointmentTableComponent.dayBtn.click();
+    await pages("schedule").appointmentTableComponent.selectView("day");
 
     await expect(
       pages("schedule").appointmentTableComponent.weekCurrentDate
@@ -79,10 +79,7 @@ describe("Schedule Test Suit", () => {
   });
 
   it("Should switch to Week view", async () => {
-    await pages("schedule").appointmentTableComponent.weekBtn.click();
-    await expect(
-      pages("schedule").appointmentTableComponent.weekBtn
-    ).toHaveElementClass("e-active-view");
+    await pages("schedule").appointmentTableComponent.selectView("week");
 
     await expect(
       pages("schedule").appointmentTableComponent.weekCurrentDate
@@ -99,10 +96,7 @@ describe("Schedule Test Suit", () => {
   });
 
   it("Should switch to Month view", async () => {
-    await pages("schedule").appointmentTableComponent.monthBtn.click();
-    await expect(
-      pages("schedule").appointmentTableComponent.monthBtn
-    ).toHaveElementClass("e-active-view");
+    await pages("schedule").appointmentTableComponent.selectView("month");
 
     await expect(
       pages("schedule").appointmentTableComponent.weekCurrentDate
@@ -133,10 +127,7 @@ describe("Schedule Test Suit", () => {
   });
 
   it("Should open appointment dialog when clicking a time slot", async () => {
-    await pages("schedule").appointmentTableComponent.weekBtn.click();
-    await expect(
-      pages("schedule").appointmentTableComponent.weekBtn
-    ).toHaveElementClass("e-active-view");
+    await pages("schedule").appointmentTableComponent.selectView("week");
 
     let cellHours;
     const workHours = await $$(".e-work-hours");
@@ -155,10 +146,7 @@ describe("Schedule Test Suit", () => {
   });
 
   it("Should close dialog when clicking cancel", async () => {
-    await pages("schedule").appointmentTableComponent.weekBtn.click();
-    await expect(
-      pages("schedule").appointmentTableComponent.weekBtn
-    ).toHaveElementClass("e-active-view");
+    await pages("schedule").appointmentTableComponent.selectView("week");
 
     let cellHours;
     const workHours = await $$(".e-work-hours");
